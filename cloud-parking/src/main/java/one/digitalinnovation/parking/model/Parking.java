@@ -1,5 +1,7 @@
 package one.digitalinnovation.parking.model;
 
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 @Data
@@ -22,8 +24,8 @@ public class Parking {
 	private String state;
 	private String model;
 	private String color;
-	private String entryDate;
-	private String exitDate;
+	private LocalDateTime entryDate;
+	private LocalDateTime exitDate;
 	private Double bill;
 	
 }

@@ -1,5 +1,8 @@
 package one.digitalinnovation.parking.controller.dto;
 
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.Data;
@@ -13,8 +16,10 @@ public class ParkingDTO {
 	private String state;
 	private String model;
 	private String color;
-	private String entryDate;
-	private String exitDate;
+	@JsonFormat(pattern = "dd/MM/YYYY HH:mm")
+	private LocalDateTime entryDate;
+	@JsonFormat(pattern = "dd/MM/YYYY HH:mm")
+	private LocalDateTime exitDate;
 	private Double bill;
 
 }
