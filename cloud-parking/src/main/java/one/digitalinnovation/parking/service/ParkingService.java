@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import one.digitalinnovation.parking.exception.ParkingNotFoundException;
 import one.digitalinnovation.parking.model.Parking;
 
 @Service
@@ -40,7 +41,15 @@ public class ParkingService {
 	}
 
 	public Parking findById(String id) {
-		return parkingMap.get(id);
+		
+		var parking = parkingMap.get(id);
+		
+		if(parking == null)
+		{
+			throw new ParkingNotFoundException(id);
+		}
+		
+		return parking;
 	}
 
 	public Parking create(Parking parkingCreate) {
@@ -49,6 +58,19 @@ public class ParkingService {
 		parkingCreate.setEntryDate(LocalDateTime.now());
 		parkingMap.put(uuid, parkingCreate);
 		return parkingCreate;
+	}
+
+	public void delete(String id) {
+		findById(id);
+		parkingMap.remove(id);
+		
+	}
+
+	public Parking update(String id, Parking parkingCreate) {
+		var parking = findById(id);
+		parking.setColor(parkingCreate.getColor());
+		parkingMap.replace(id, parking);
+		return parking;
 	}
 	
 	
