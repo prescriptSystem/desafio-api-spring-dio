@@ -82,10 +82,16 @@ public class ParkingController {
 	public ResponseEntity<ParkingDTO> update(@PathVariable String id, @RequestBody ParkingCreateDTO parkingCreateDTO)
 	{
 		
-		var parkingCreate = parkingMapper.toParkingCreate(parkingCreateDTO);
-		Parking parking = parkingService.update(id, parkingCreate);
-		ParkingDTO result = parkingMapper.toParkingDTO(parking);
-		return ResponseEntity.status(HttpStatus.OK).body(result);
+		var parkingUpdate = parkingMapper.toParkingCreate(parkingCreateDTO);
+		Parking parking = parkingService.update(id, parkingUpdate);
+		return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
+	}
+	
+	@PostMapping("/{id}")
+	public ResponseEntity<ParkingDTO> create(@PathVariable String id)
+	{
+		Parking parking = parkingService.checkOut(id);
+		return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
 	}
 	
 	
