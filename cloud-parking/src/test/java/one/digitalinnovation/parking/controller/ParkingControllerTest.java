@@ -15,7 +15,7 @@ import one.digitalinnovation.parking.controller.dto.ParkingCreateDTO;
 
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class ParkingControllerTest {
+public class ParkingControllerTest extends AbstractConteinerBase{
 	
 	@LocalServerPort
 	private int randomPort;

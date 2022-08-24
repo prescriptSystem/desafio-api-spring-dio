@@ -21,7 +21,7 @@ public class ParkingCheckOut {
 	private static Double getBill(LocalDateTime entryDate, LocalDateTime exitDate)
 	{
 		long minutes = entryDate.until(exitDate, ChronoUnit.MINUTES);
-		Double bill = 0d;
+		double bill = 0d;
 		
 		if(minutes <= ONE_HOUR)
 		{
